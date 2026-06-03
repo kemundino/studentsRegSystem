@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Search, Plus, Edit2, Trash2, X } from 'lucide-react';
 import { getTeachers, deleteTeacher, createTeacher, updateTeacher, register, getDepartments } from '../../api/backend';
 
-export const Faculty = () => {
+export const Teacher = () => {
   const [teachers, setTeachers] = useState<any[]>([]);
   const [departments, setDepartments] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -37,7 +37,7 @@ export const Faculty = () => {
       setTeachers(teachersData);
       setDepartments(departmentsData);
     } catch (error) {
-      console.error('Failed to fetch faculty data:', error);
+      console.error('Failed to fetch teacher data:', error);
     } finally {
       setLoading(false);
     }
@@ -142,7 +142,7 @@ export const Faculty = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-violet-500 to-cyan-500 bg-clip-text text-transparent">Faculty</h1>
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-violet-500 to-cyan-500 bg-clip-text text-transparent">Teacher</h1>
           <p className="text-slate-400 text-sm mt-1">Manage teaching staff and professors.</p>
         </div>
         <button 
@@ -150,7 +150,7 @@ export const Faculty = () => {
           className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-violet-500 to-cyan-500 text-white px-4 py-2.5 rounded-xl hover:opacity-90 transition-opacity font-medium text-sm"
         >
           <Plus size={18} />
-          <span>Add Faculty</span>
+          <span>Add Teacher</span>
         </button>
       </div>
 
@@ -159,7 +159,7 @@ export const Faculty = () => {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
           <input 
             type="text" 
-            placeholder="Search faculty by ID, name, or email..." 
+            placeholder="Search Teacher by ID, name, or email..." 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full bg-slate-900/50 border border-white/10 rounded-xl py-2 pl-10 pr-4 text-slate-300 placeholder:text-slate-500 text-sm focus:outline-none focus:border-violet-500 transition-colors"
@@ -239,7 +239,7 @@ export const Faculty = () => {
             {/* Header */}
             <div className="px-6 py-4 border-b border-white/10 flex justify-between items-center">
               <h2 className="text-xl font-bold text-white">
-                {modalType === 'create' ? 'Add New Faculty' : 'Edit Faculty Details'}
+                {modalType === 'create' ? 'Add New Teacher' : 'Edit Teacher Details'}
               </h2>
               <button 
                 onClick={() => setIsModalOpen(false)}
@@ -367,7 +367,7 @@ export const Faculty = () => {
                   className="px-5 py-2 rounded-xl bg-gradient-to-r from-violet-500 to-cyan-500 text-white font-medium text-sm hover:opacity-90 disabled:opacity-50 transition-opacity flex items-center gap-2"
                 >
                   {submitting && <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
-                  {modalType === 'create' ? 'Add Faculty' : 'Save Changes'}
+                  {modalType === 'create' ? 'Add Teacher' : 'Save Changes'}
                 </button>
               </div>
             </form>
