@@ -249,3 +249,18 @@ export const getTeacherStats = async (teacherId: string) => {
     return { courses: 0, students: 0, attendance: 0, pendingGrades: 0 };
   }
 };
+
+export const updateEnrollment = async (enrollmentId: string, enrollmentData: any) => {
+  const response = await api.put(`/enrollments/${enrollmentId}`, enrollmentData);
+  return response.data;
+};
+
+export const verifyEmail = async (email: string) => {
+  const response = await api.post(`/auth/verify?email=${encodeURIComponent(email)}`);
+  return response.data;
+};
+
+export const deleteEnrollment = async (enrollmentId: string) => {
+  const response = await api.delete(`/enrollments/${enrollmentId}`);
+  return response.data;
+};

@@ -8,9 +8,24 @@ from app.api.v1.dependencies import get_current_user
 
 router = APIRouter()
 
+from typing import Optional
+
 @router.get("/", response_model=List[Course])
-def read_courses(skip: int = 0, limit: int = 100, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
-    return get_courses(db, skip=skip, limit=limit)
+def read_courses(
+    skip: int = 0, 
+    limit: int = 100, 
+    teacher_id: Optional[int] = None,
+    department_id: Optional[int] = None,
+    db: Session = Depends(get_db), 
+    current_user = Depends(get_current_user)
+):
+    from app.models.course import Course as CourseModel
+    query = db.query(CourseModel)
+    if teacher_id is not None:
+        query = query.filter(CourseModel.teacher_id == teacher_id)
+    if department_id is not None:
+        query = query.filter(CourseModel.department_id == department_id)
+    return query.offset(skip).limit(limit).all()
 
 @router.post("/", response_model=Course)
 def create_course_endpoint(course: CourseCreate, db: Session = Depends(get_db), current_user = Depends(get_current_user)):

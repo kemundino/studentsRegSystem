@@ -18,6 +18,7 @@ class User(Base):
     last_name = Column(String, nullable=False)
     role = Column(Enum(UserRole), default=UserRole.STUDENT, nullable=False)
     is_active = Column(Boolean, default=True)
+    is_verified = Column(Boolean, default=False)
 
     # Relationships
     student = relationship("Student", back_populates="user", uselist=False)

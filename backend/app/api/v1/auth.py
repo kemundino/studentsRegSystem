@@ -32,3 +32,13 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
 @router.get("/me", response_model=User)
 def read_users_me(current_user: User = Depends(get_current_user)):
     return current_user
+
+@router.post("/verify")
+def verify_email(email: str, db: Session = Depends(get_db)):
+    user = get_user_by_email(db, email=email)
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    user.is_verified = True
+    db.commit()
+    return {"message": "Email verified successfully"}
+

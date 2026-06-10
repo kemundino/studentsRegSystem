@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { MainLayout } from './components/layout/MainLayout';
 import { Login } from './pages/auth/Login';
+import { Verify } from './pages/auth/Verify';
 import { AdminDashboard } from './pages/admin/Dashboard';
 import { Students } from './pages/admin/Students';
 import { Teacher } from './pages/admin/Teachers';
@@ -47,6 +48,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/login" element={user ? <Navigate to={`/${user.role}`} replace /> : <Login />} />
+      <Route path="/verify" element={<Verify />} />
 
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Navigate to={user ? `/${user.role}` : "/login"} replace />} />

@@ -28,7 +28,8 @@ try:
                 password=settings.FIRST_ADMIN_PASSWORD,
                 first_name="System",
                 last_name="Admin",
-                role=UserRole.ADMIN
+                role=UserRole.ADMIN,
+                is_verified=True
             )
         )
 except Exception as e:

@@ -21,3 +21,14 @@ class Enrollment(EnrollmentBase):
 
     class Config:
         from_attributes = True
+
+from app.schemas.student import StudentWithUser
+from app.schemas.course import Course
+
+class EnrollmentWithDetails(Enrollment):
+    student: Optional[StudentWithUser] = None
+    course: Optional[Course] = None
+
+    class Config:
+        from_attributes = True
+
