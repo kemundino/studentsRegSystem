@@ -6,7 +6,7 @@ import { Login } from './pages/auth/Login';
 import { Verify } from './pages/auth/Verify';
 import { AdminDashboard } from './pages/admin/Dashboard';
 import { Students } from './pages/admin/Students';
-import { Teachers } from './pages/admin/Teachers';
+import { Teacher } from './pages/admin/Teachers';
 import { Courses as AdminCourses } from './pages/admin/Courses';
 import { Departments } from './pages/admin/Departments';
 import { Settings } from './pages/admin/Settings';
@@ -56,7 +56,7 @@ function AppRoutes() {
         {/* Admin Routes */}
         <Route path="admin" element={<ProtectedRoute allowedRoles={['admin']}><AdminDashboard /></ProtectedRoute>} />
         <Route path="admin/students" element={<ProtectedRoute allowedRoles={['admin']}><Students /></ProtectedRoute>} />
-        <Route path="admin/teachers" element={<ProtectedRoute allowedRoles={['admin']}><Teachers /></ProtectedRoute>} />
+        <Route path="admin/teachers" element={<ProtectedRoute allowedRoles={['admin']}><Teacher /></ProtectedRoute>} />
         <Route path="admin/courses" element={<ProtectedRoute allowedRoles={['admin']}><AdminCourses /></ProtectedRoute>} />
         <Route path="admin/departments" element={<ProtectedRoute allowedRoles={['admin']}><Departments /></ProtectedRoute>} />
         <Route path="admin/settings" element={<ProtectedRoute allowedRoles={['admin']}><Settings /></ProtectedRoute>} />
